@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI गेम प्रेडिक्टर - डिपॉजिट</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .console-box {
+      font-family: monospace;
+      background-color: #1a1a1a;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 20px #00ff88;
+      color: #00ff88;
+      height: 250px;
+      overflow-y: auto;
+    }
+    .loading-screen {
+      font-family: monospace;
+      background: #000;
+      color: #00ff88;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      z-index: 50;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    .hidden-screen {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+  <div id="loading" class="loading-screen">
+    <p>लोड हो रहा है... कृपया प्रतीक्षा करें।</p>
+  </div>
+
+  <div id="mainContent" class="hidden-screen">
+    <header class="w-full bg-gray-800 p-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-green-400">1xBet AI प्रेडिक्टर</h1>
+      <nav class="space-x-4">
+        <a href="#how" class="hover:text-green-400">कैसे काम करता है</a>
+        <a href="#games" class="hover:text-green-400">गेम्स</a>
+        <a href="#start" class="hover:text-green-400">शुरू करें</a>
+      </nav>
+    </header>
+
+    <section class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+      <h2 class="text-3xl md:text-5xl font-bold mb-6">AI प्रेडिक्शन से असली पैसे कमाएं</h2>
+      <p class="max-w-xl mb-8 text-gray-300">हजारों भारतीय Aviator, Mines और Penalty जैसे खेलों में जीतने के लिए हमारे स्मार्ट AI का उपयोग कर रहे हैं। 98% सटीकता, रीयल-टाइम संकेत, और तेज़ पेआउट!</p>
+
+      <input id="userId" type="text" placeholder="अपना 1xBet खाता ID दर्ज करें" class="bg-gray-700 text-white p-3 rounded-md mb-4" />
+      <button id="connectButton" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-xl text-lg transition">खाता कनेक्ट करें</button>
+
+      <div id="connectionSuccess" class="hidden text-green-400 font-bold mt-6">
+        <p>खाता ID: <span id="accountIdDisplay">1234567890</span> सफलतापूर्वक कनेक्ट हो गया है!</p>
+        <p>स्थिति: सक्रिय | 100% भविष्यवाणी सटीकता | AI विश्लेषण पूर्ण</p>
+        <button id="getSignalButton" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition mt-4">संकेत प्राप्त करें</button>
+      </div>
+
+      <div id="errorBox" class="hidden bg-red-600 p-6 rounded-xl max-w-md mx-auto mt-6">
+        <h2 class="text-xl font-bold mb-2">⚠️ डिपॉजिट नहीं मिला</h2>
+        <p class="mb-4">आपका खाता बैलेंस शून्य है। कृपया ₹450 का डिपॉजिट करें ताकि आप AI संकेत प्राप्त कर सकें और कमाई शुरू कर सकें।</p>
+        <a href="https://affpa.top/L?tag=d_1234567m_76543c_&site=1234567&ad=76543&r=registration" target="_blank" id="depositButton" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition">
+          अभी 1xBet पर डिपॉजिट करें
+        </a>
+      </div>
+    </section>
+
+    <section class="bg-gray-800 py-12 px-6 text-center">
+      <h3 class="text-2xl font-bold text-green-400 mb-6">आज के टॉप अर्नर (₹)</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-left max-w-4xl mx-auto text-sm text-green-300">
+        <p>👤 यूज़र ID: 1218473422 – ₹275,328</p>
+        <p>👤 यूज़र ID: 9912384741 – ₹221,900</p>
+        <p>👤 यूज़र ID: 3099234822 – ₹184,120</p>
+        <p>👤 यूज़र ID: 1187339121 – ₹150,000</p>
+        <p>👤 यूज़र ID: 4412900113 – ₹132,850</p>
+        <p>👤 यूज़र ID: 8283721091 – ₹128,440</p>
+        <p>👤 यूज़र ID: 7751937742 – ₹100,705</p>
+        <p>👤 यूज़र ID: 5554921811 – ₹98,330</p>
+        <p>👤 यूज़र ID: 1983238742 – ₹85,000</p>
+        <p>👤 यूज़र ID: 3377749301 – ₹79,210</p>
+      </div>
+    </section>
+
+    <section id="games" class="bg-gray-800 py-12 px-6 text-center">
+      <h3 class="text-2xl font-bold text-green-400 mb-6">सपोर्टेड गेम्स</h3>
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
+          <h4 class="text-xl font-bold mb-2">🎮 Aviator</h4>
+          <p class="text-gray-300">प्लेन उड़ने से पहले कैशआउट करें! हमारा AI वास्तविक समय में ट्रेंड्स पकड़ता है।</p>
+        </div>
+        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
+          <h4 class="text-xl font-bold mb-2">💣 Mines</h4>
+          <p class="text-gray-300">बम से बचें, जीतें। हमारा सिस्टम कम जोखिम वाली चालों की पहचान करता है।</p>
+        </div>
+        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
+          <h4 class="text-xl font-bold mb-2">🥅 Penalty</h4>
+          <p class="text-gray-300">कहाँ शूट करना है या गोता लगाना है जानें। डेटा आधारित निर्णय लें।</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="bg-gray-900 py-12 px-6 text-center">
+      <h3 class="text-2xl font-bold text-green-400 mb-6">यह कैसे काम करता है</h3>
+      <div class="max-w-3xl mx-auto space-y-4 text-gray-300">
+        <p>📡 हमारा AI 24/7 लाइव डेटा और इतिहास को स्कैन करता है।</p>
+        <p>💡 यह पैटर्न्स को पहचानता है जो लगातार जीत सुनिश्चित करते हैं।</p>
+        <p>📲 आपको विश्वसनीय रीयल-टाइम भविष्यवाणियां मिलती हैं — सीधे आपके डिवाइस पर।</p>
+      </div>
+    </section>
+
+    <section class="bg-black py-12 px-6 text-center">
+      <h3 class="text-xl font-bold text-green-400 mb-4">[ कंसोल मॉनिटर लॉग ]</h3>
+      <div class="console-box max-w-3xl mx-auto text-left" id="console">
+        <p>[INFO] प्रेडिक्टर सेवा सक्रिय ✅</p>
+      </div>
+    </section>
+
+    <footer class="text-center text-gray-500 text-sm py-6">
+      © 2025 AI प्रेडिक्टर. 1xBet से संबद्ध नहीं है। जिम्मेदारी से उपयोग करें।
+    </footer>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById("loading").classList.add("hidden-screen");
+      document.getElementById("mainContent").classList.remove("hidden-screen");
+    }, 3000);
+
+    document.getElementById("connectButton").addEventListener("click", () => {
+      const userId = document.getElementById("userId").value;
+      if (userId) {
+        document.getElementById("accountIdDisplay").innerText = userId;
+        document.getElementById("connectionSuccess").classList.remove("hidden");
+        document.getElementById("errorBox").classList.add("hidden");
+      }
+    });
+
+    document.getElementById("getSignalButton").addEventListener("click", () => {
+      document.getElementById("errorBox").classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>
